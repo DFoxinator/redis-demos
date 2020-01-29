@@ -1,17 +1,18 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-set_time_limit(3600);
+// supervisord -n -c conf/supervisor_users_online.conf
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../bootstrap/cli.php';
 
-$redis_client =  (new Redis())->connect();
+$redis_client = new Redis();
+$redis_client->connect('127.0.0.1');
 
 $user = new \RedisDemos\Entities\User();
 
-while ($user->hasTakenLastAction()) {
+while ($user->isOnline()) {
 
+  $user->waitForActionPerformed();
 
+  $redis_client->zAdd('users', [], time(), $user->getIdentifier());
 
 }
