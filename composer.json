@@ -1,0 +1,14 @@
+{
+  "name": "dfoxinator/redis-demos",
+  "description": "Redis demos",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4",
+    "ext-redis": "^5.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "RedisDemos\\": "src/"
+    }
+  }
+}
