@@ -62,5 +62,7 @@ foreach ($api_usage_info as $client_id_and_usage_type => $count) {
 ksort($api_usage_by_client_id, SORT_NATURAL);
 
 foreach ($api_usage_by_client_id as $client_id => $usage_info) {
+  // do some processing of the data to your persistent store here
+
   echo 'Client id "' . $client_id . '" usage: ' . $usage_info['read'] . ' read(s), ' . $usage_info['write'] . ' write(s)' . "\n";
 }
