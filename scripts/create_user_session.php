@@ -13,6 +13,7 @@ while ($user->isOnline()) {
 
   $user->waitForActionPerformed();
 
+  // add/update item in sorted set, params are: key, options, score, value
   $redis_client->zAdd('users', [], time(), $user->getIdentifier());
 
 }
